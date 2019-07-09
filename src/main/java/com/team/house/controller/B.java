@@ -1,5 +1,4 @@
 package com.team.house.controller;
 
-public class A {
-    String i="";
+public class B {
 }
