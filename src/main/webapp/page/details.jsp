@@ -23,7 +23,7 @@ rel=stylesheet type=text/css href="../css/style.css">
 <P>面　　积：<SPAN>${house.floorage}m<SUP>2</SUP></SPAN></P>
 <P>位　　置：<SPAN>${house.dname}${house.sname}</SPAN></P>
 <P>联系方式：<SPAN>${house.contact}</SPAN></P>
-<P>房子图片：<SPAN><img src="http://localhost:88/${house.path}" width="100" height="75" alt=""></SPAN></P></DIV></DIV>
+<P>房子图片：<SPAN><img src="http://localhost:88/${house.path}" width="100" height="75" alt="无法获取图片信息"></SPAN></P></DIV></DIV>
 <DIV class=side>
 <P><A class=bold href="http://localhost:8080/House-2/#">北京青鸟房地产经纪公司</A></P>
 <P>资质证书：有</P>

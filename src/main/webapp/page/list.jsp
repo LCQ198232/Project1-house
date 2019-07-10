@@ -127,7 +127,7 @@ function goPage(pageNum) {
                         </a></span></TD>
                     <TD>
                         <DL>
-                            <DT><A href="details.jsp" target="_blank">${h.title}</A></DT>
+                            <DT><A href="showHouse?id=${h.id}" target="_blank">${h.title}</A></DT>
                             <DD>${h.dname}==${h.sname},${h.floorage}平米<BR>联系方式：${h.contact} </DD>
                         </DL>
                     </TD>

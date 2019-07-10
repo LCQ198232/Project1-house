@@ -64,6 +64,7 @@
                         <TR>
                             <TD class=field>用 户 名：</TD>
                             <TD><INPUT class=text type=text id="username" name=name>&nbsp;&nbsp;
+                                <INPUT class=text type=hidden id="isadmin" name=isadmin value="1">
                             <span id="span"></span>
                             </TD>
                         </TR>
