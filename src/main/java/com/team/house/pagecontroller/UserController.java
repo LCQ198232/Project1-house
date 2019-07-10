@@ -33,13 +33,14 @@ public class UserController {
     //注册(添加)
     @RequestMapping("reg")
     public String addUser(Users users) {
-            int i = userService.insertUser(users);
-            if (i > 0) {
-                return "page/login";//注册成功跳转到登录页面
-            } else {
-                return "page/regs";//注册失败跳转到注册页面
-            }
-
+        //区分后台管理员和普通用户 标记
+        users.setIsadmin(0);//普通用户
+        int i = userService.insertUser(users);
+        if (i > 0) {
+            return "page/login";//注册成功跳转到登录页面
+        } else {
+            return "page/regs";//注册失败跳转到注册页面
+        }
     }
 
     //登录验证
