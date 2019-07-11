@@ -52,7 +52,7 @@ public class DrawYzm extends JFrame{
             builderCode.append(c);
             g.drawString(c+"",150*(i+1),175);
         }
-//        //5.输出到屏幕
+////        //5.输出到屏幕
           ServletOutputStream sos = response.getOutputStream();
           ImageIO.write(buffImg,"png",sos);
         //6.保存到session中

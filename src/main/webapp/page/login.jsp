@@ -8,26 +8,38 @@
     <META name=GENERATOR content="MSHTML 8.00.7601.17514">
     <script language="JavaScript" src="js/jquery-1.8.3.js"></script>
     <script language="JavaScript">
-       $(function () {//加载事件
-             //点击事件
-           $("#yzm_img").click(function () {
-               var url = document.getElementById("yzm_img").getAttribute("src");
-               var randomnum = Math.random();
-               //刷新浏览器缓存用
-               document.getElementById("yzm_img").setAttribute("src",url+"?"+randomnum);
+        var objTime;
+       $(function (){//加载事件
+              //点击发送短信验证码到手机
+           $("#sendButton").click(function () {
+               //$.post("getCored",{"sendPhone":$("#sendPhone").val()},function (data) {
 
+                  // if (data.result>0){
+                         //设置失效时间
+
+                       //倒计时
+                       objTime=setInterval("backTime()",1000);//每隔一秒时间减少一
+                   //}else {
+                      // alert("发送失败")
+                   //}
+
+               //},"json");
            });
 
        });
-          //验证码验证
-       function validateCode(){
-             var inputCored=$("#inputCode").val();
-             alert(inputCored)
-
-             $.post("checkCored",{"cored":inputCored},function (data) {
-                var result=data.info;
-                alert(result)
-             },"json");
+        //获取失效时间
+         var time=10;
+       function backTime() {//time 为设置失效时间
+           if (time!=0){
+               time--;
+               $("#sendButton")[0].disabled=true;
+               $("#sendButton").css("padding","5px 10px");
+               $("#sendButton").val(time+"秒");
+           }else{
+               clearInterval(objTime);  //清除定时
+               $("#sendButton")[0].disabled=false;
+               $("#sendButton").val("获取验证码");
+           }
        }
 
 
@@ -59,25 +71,24 @@
                             <TD><!-- <input type="password" class="text" name="password" /> --><INPUT
                                     id=user_password class=text type=password name=password></TD>
                         </TR>
+                        <TR>
+                            <TD class=field>手 机 号:</TD>
+                            <TD>
+                                <INPUT type="text" id="sendPhone"  style="float:left;height:25px" name="sendPhone">
 
+                                <INPUT type="button" id="sendButton"  value="获取验证码" style="float:left;height:25px">
+                            </TD>
+                        </TR>
                         <TR>
                             <TD class=field>验 证 码:</TD>
                             <TD>
                                 <INPUT type="text" id="inputCode"  style="float:left;height:25px" name="cored">
+                                <INPUT type="hidden" id="endTime"  style="float:left;height:25px">
                             </TD>
                         </TR>
-
-                        <TR>
-                            <TD></TD>
-                            <TD>
-                                <img src="/page/getCored" style="height: 50px;width: 150px" id="yzm_img">      点击图片刷新
-                            </TD>
-                        </TR>
-
                     </TABLE>
                     <DIV class=buttons>
                         <INPUT value=登陆 type=submit>
-                        <INPUT value=验证码验证 type=button onclick="validateCode()">
                         <INPUT onclick='document.location="regs.jsp"' value=注册 type=button>
                     </DIV>
                 </DIV>
