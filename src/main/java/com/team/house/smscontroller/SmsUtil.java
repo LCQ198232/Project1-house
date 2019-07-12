@@ -8,7 +8,7 @@ package com.team.house.smscontroller;
 public class SmsUtil {
 	
 	//用户名
-	private static String Uid = "LCQ198232";
+	private static String Uid = "hahahazlz";
 	
 	//接口安全秘钥
 	private static String Key = "d41d8cd98f00b204e980";

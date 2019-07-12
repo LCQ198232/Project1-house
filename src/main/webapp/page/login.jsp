@@ -9,37 +9,41 @@
     <script language="JavaScript" src="js/jquery-1.8.3.js"></script>
     <script language="JavaScript">
         var objTime;
-       $(function (){//加载事件
-              //点击发送短信验证码到手机
-           $("#sendButton").click(function () {
-               //$.post("getCored",{"sendPhone":$("#sendPhone").val()},function (data) {
+        var time;
+        $(function (){//加载事件
+            //点击发送短信验证码到手机
+            $("#sendButton").click(function () {
+                $.post("getCored",{"sendPhone":$("#sendPhone").val()},function (data) {
+               if (data.result>0){
+                //设置失效时间
+                   time= data.time;
+                //倒计时
+                   objTime=setInterval("backTime()",1000);//每隔一秒时间减少一
+                 }else {
+                 alert("发送失败")
+                   //设置失效时间
+                   time=5;
+                   //倒计时
+                   objTime=setInterval("backTime()",1000);//每隔一秒时间减少一
+                }
+                },"json");
+            });
 
-                  // if (data.result>0){
-                         //设置失效时间
+        });
 
-                       //倒计时
-                       objTime=setInterval("backTime()",1000);//每隔一秒时间减少一
-                   //}else {
-                      // alert("发送失败")
-                   //}
-
-               //},"json");
-           });
-
-       });
-        //获取失效时间
-         var time=10;
        function backTime() {//time 为设置失效时间
            if (time!=0){
-               time--;
                $("#sendButton")[0].disabled=true;
                $("#sendButton").css("padding","5px 10px");
                $("#sendButton").val(time+"秒");
+               time--;
            }else{
-               clearInterval(objTime);  //清除定时
                $("#sendButton")[0].disabled=false;
                $("#sendButton").val("获取验证码");
+               clearInterval(objTime);//清除上一次事件对象,防止时间加速
            }
+
+
        }
 
 
@@ -76,14 +80,13 @@
                             <TD>
                                 <INPUT type="text" id="sendPhone"  style="float:left;height:25px" name="sendPhone">
 
-                                <INPUT type="button" id="sendButton"  value="获取验证码" style="float:left;height:25px">
+                                <INPUT type="button" id="sendButton" name="sendButton" value="获取验证码" style="float:left;height:25px">
                             </TD>
                         </TR>
                         <TR>
                             <TD class=field>验 证 码:</TD>
                             <TD>
                                 <INPUT type="text" id="inputCode"  style="float:left;height:25px" name="cored">
-                                <INPUT type="hidden" id="endTime"  style="float:left;height:25px">
                             </TD>
                         </TR>
                     </TABLE>
