@@ -11,6 +11,7 @@ import com.team.house.util.UserCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -80,37 +81,33 @@ public class UserServiceImpl implements UserService {
             users.setIsadmin(0);
             //密码加密 进行md5加密:确保数据的安全性
             String password = MD5Utils.md5Encrypt(users.getPassword());
-
             users.setPassword(password);
-            return usersMapper.insertSelective(users);
         } else {
             //设置为注册用户
             users.setIsadmin(1);
             //密码加密 进行md5加密:确保数据的安全性
             String password = MD5Utils.md5Encrypt(users.getPassword());
-
             users.setPassword(password);
-            return usersMapper.insertSelective(users);
         }
-
+        return usersMapper.insertSelective(users);
     }
 
     //注册验证
     @Override
     public int checkName(String name, Integer isadmin) {
+        List<Users> list=new ArrayList<>();
         UsersExample example = new UsersExample();
         UsersExample.Criteria criteria = example.createCriteria();
         if (isadmin == 0) {
             criteria.andIsadminEqualTo(0);//表示前台普通用户
             criteria.andNameEqualTo(name);
-            List<Users> list = usersMapper.selectByExample(example);
-            return list.size();
+            list = usersMapper.selectByExample(example);
+
         } else {
             criteria.andIsadminEqualTo(1);//表示后台管理员用户
             criteria.andNameEqualTo(name);
-            List<Users> list = usersMapper.selectByExample(example);
-            return list.size();
+            list = usersMapper.selectByExample(example);
         }
-
+        return list.size();
     }
 }
