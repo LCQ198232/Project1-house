@@ -233,28 +233,28 @@
   
   <select id="getHouseByUid"  resultType="com.team.house.entity.House">
     SELECT h.id,title,pubdate,price,floorage,path,contact,d.`name`AS dname,t.`NAME`AS tname,s.`NAME`AS sname FROM house AS h
-      INNER JOIN TYPE AS t ON t.`ID`=h.`TYPE_ID`
+      INNER JOIN `type` AS t ON t.`ID`=h.`TYPE_ID`
       INNER JOIN street AS s ON h.`STREET_ID`=s.`ID`
       INNER JOIN district AS d ON s.`DISTRICT_ID`=d.`id`
       WHERE h.`USER_ID`=#{0} and isdel=#{1}
   </select>
 
-  <select id="getHouse" resultType="House" parameterType="string">
+  <select id="getHouse" resultType="com.team.house.entity.House" parameterType="String">
      SELECT h.id,title,price,pubdate,contact,floorage,path,DESCRIPTION,
     t.`NAME` AS tname ,s.`NAME` AS sname , d.`NAME` AS dname
     FROM house  AS h
-    INNER JOIN TYPE AS t  ON h.`TYPE_ID`=t.id
+    INNER JOIN `type` AS t  ON h.`TYPE_ID`=t.id
     INNER JOIN street AS s ON h.`STREET_ID`=s.`ID`
     INNER JOIN district AS d ON s.`DISTRICT_ID`=d.`ID`
       WHERE h.id=#{id,jdbcType=VARCHAR}
 </select>
 
 
-  <select id="getHouseByIsPass" parameterType="com.team.house.util.HouseCondition" resultType="House">
+  <select id="getHouseByIsPass" parameterType="com.team.house.util.HouseCondition" resultType="com.team.house.entity.House">
     SELECT h.id,title,price,pubdate,contact,floorage,path,
     t.`NAME` AS tname ,s.`NAME` AS sname , d.`NAME` AS dname
     FROM house  AS h
-    INNER JOIN TYPE AS t  ON h.`TYPE_ID`=t.id
+    INNER JOIN `type` AS t  ON h.`TYPE_ID`=t.id
     INNER JOIN street AS s ON h.`STREET_ID`=s.`ID`
     INNER JOIN district AS d ON s.`DISTRICT_ID`=d.`ID`
     where isdel=0
@@ -289,11 +289,11 @@
   </select>
 
 
-  <select id="getBroswerHouse" parameterType="com.team.house.util.HouseCondition" resultType="House">
+  <select id="getBroswerHouse" parameterType="com.team.house.util.HouseCondition" resultType="com.team.house.entity.House">
     SELECT h.id,title,price,pubdate,contact,floorage,path,
     t.`NAME` AS tname ,s.`NAME` AS sname , d.`NAME` AS dname
     FROM house  AS h
-    INNER JOIN TYPE AS t  ON h.`TYPE_ID`=t.id
+    INNER JOIN `type` AS t  ON h.`TYPE_ID`=t.id
     INNER JOIN street AS s ON h.`STREET_ID`=s.`ID`
     INNER JOIN district AS d ON s.`DISTRICT_ID`=d.`ID`
     where isdel=0 and ispass=1

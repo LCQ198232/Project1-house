@@ -14,28 +14,18 @@
 	 var _menus = {"menus":[
 						{"menuid":"1","icon":"icon-sys","menuname":"区域管理",
 							"menus":[
-									{"menuid":"12","menuname":"学生管理","icon":"icon-add","url":"stuman.html"},
 									{"menuid":"13","menuname":"区域管理","icon":"icon-users","url":"district.jsp"},
-									{"menuid":"15","menuname":"权限设置","icon":"icon-set","url":"demo.html"},
 									{"menuid":"16","menuname":"系统日志","icon":"icon-log","url":"demo1.html"}
 								]
 						},{"menuid":"8","icon":"icon-sys","menuname":"用户管理",
-							"menus":[{"menuid":"21","menuname":"用户管理","icon":"icon-nav","url":"users.jsp"},
-									{"menuid":"22","menuname":"视频监控","icon":"icon-nav","url":"demo1.html"}
+							"menus":[{"menuid":"21","menuname":"用户管理","icon":"icon-nav","url":"users.jsp"}
 								]
 						},{"menuid":"56","icon":"icon-sys","menuname":"房屋审核",
 							"menus":[{"menuid":"31","menuname":"未审核","icon":"icon-nav","url":"NoPass.jsp"},
 									{"menuid":"32","menuname":"已审核","icon":"icon-nav","url":"IsPass.jsp"}
 								]
 						},{"menuid":"28","icon":"icon-sys","menuname":"类型管理",
-							"menus":[{"menuid":"41","menuname":"类型管理","icon":"icon-nav","url":"type.jsp"},
-									{"menuid":"42","menuname":"报表统计","icon":"icon-nav","url":"demo1.html"},
-									{"menuid":"43","menuname":"添加支出","icon":"icon-nav","url":"demo2.html"}
-								]
-						},{"menuid":"39","icon":"icon-sys","menuname":"商城管理",
-							"menus":[{"menuid":"51","menuname":"商品分类","icon":"icon-nav","url":"demo.html"},
-									{"menuid":"52","menuname":"商品列表","icon":"icon-nav","url":"demo1.html"},
-									{"menuid":"53","menuname":"商品订单","icon":"icon-nav","url":"demo2.html"}
+							"menus":[{"menuid":"41","menuname":"类型管理","icon":"icon-nav","url":"type.jsp"}
 								]
 						}
 				]};
@@ -104,7 +94,7 @@
                 $.messager.confirm('系统提示', '您确定要退出本次登录吗?', function(r) {
 
                     if (r) {
-                        location.href = '/ajax/loginout.ashx';
+                        location.href = '/admin/login.jsp';
                     }
                 });
             })

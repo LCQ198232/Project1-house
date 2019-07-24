@@ -99,7 +99,7 @@
             <tr>
                 <td>房屋图片：</td>
                 <td>
-                    <img style="width: 100px;height: 100px" src="http://localhost:88/path">
+                    <%--<img style="width: 100px;height: 100px" src="http://localhost:88/path">--%>
                 </td>
             </tr>
         </table>
